@@ -1,0 +1,43 @@
+
+version: '3.7'
+
+services:
+  trino:
+    image: trinodb/trino
+    networks:
+      - trino-net
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./trino-config:/etc/trino
+      - ./catalog:/etc/trino/catalog
+    environment:
+      - TRINO_CONFIG_DIR=/etc/trino
+      - TRINO_CATALOG_DIR=/etc/trino/catalog
+
+  mysql:
+    image: mysql:latest
+    networks:
+      - trino-net
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mydatabase
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.0
+    networks:
+      - trino-net
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+
+networks:
+  trino-net:      
+
+volumes:
+  trino-config:
+  catalog:
