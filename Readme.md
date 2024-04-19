@@ -1,6 +1,6 @@
 # Trino Overview and Benefits
 
-Trino, formerly known as PrestoSQL, is a powerful distributed SQL query engine designed for high-performance data processing and analytics. Here are some key highlights and benefits of Trino that upper management should be aware of:
+Trino, formerly known as PrestoSQL, is a powerful distributed SQL query engine designed for high-performance data processing and analytics. 
 
 ## Key Highlights
 
